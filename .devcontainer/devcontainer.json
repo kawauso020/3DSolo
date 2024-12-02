@@ -1,0 +1,7 @@
+{
+   "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": false,
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  }
+}
