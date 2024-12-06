@@ -4,6 +4,9 @@ using Unity.FPS.Game;
 using Unity.FPS.Gameplay;
 using UnityEngine;
 
+/// <summary>
+/// 守るべきターゲットを管理するクラス
+/// </summary>
 public class TargetController : MonoBehaviour
 {
     public bool IsDead { get; private set; }
@@ -31,6 +34,9 @@ public class TargetController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// ターゲットのHPが0になったときに呼び出される
+    /// </summary>
     void OnDie()
     {
         Debug.Log("ターゲットが死んだ");

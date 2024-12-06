@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ショップを管理するクラス
+/// </summary>
 public class Shop : MonoBehaviour
 {
     // 表示/非表示を切り替えるCanvas
@@ -26,7 +29,7 @@ public class Shop : MonoBehaviour
         }
     }
     /// <summary>
-    /// プレイヤーとオブジェクトとの距離
+    /// プレイヤーとオブジェクトとの距離を？？？途中までしか書かれていないぞ
     /// </summary>
     void Update()
     {
@@ -34,7 +37,7 @@ public class Shop : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
 
         // 距離が範囲内でキーが押された場合にCanvasを表示
-        if (distance <= activationRange && Input.GetKeyDown(toggleKey))
+        if (distance <= activationRange && Input.GetKeyDown(toggleKey)) //--> ここNewInputSystemに変更する 
         {
             if (targetCanvas != null)
             {
@@ -42,7 +45,7 @@ public class Shop : MonoBehaviour
                 targetCanvas.SetActive(!isActive);
                 SetCursorState(!isActive);
             }
-        }
+        }w
     }
     /// <summary>
     /// マウスカーソルの表示/非表示を切り替える
