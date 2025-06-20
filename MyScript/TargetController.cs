@@ -4,6 +4,11 @@ using Unity.FPS.Game;
 using Unity.FPS.Gameplay;
 using UnityEngine;
 
+/// <summary>
+/// ターゲットのコントローラークラス
+/// このクラスは、ターゲットの状態を管理し、死んだときにイベントを発行します。
+/// </summary>
+/// 
 public class TargetController : MonoBehaviour
 {
     public bool IsDead { get; private set; }

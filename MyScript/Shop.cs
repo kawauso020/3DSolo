@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ショップのCanvasを表示/非表示に切り替えるクラス
+/// </summary>
 public class Shop : MonoBehaviour
 {
     // 表示/非表示を切り替えるCanvas
@@ -26,7 +29,7 @@ public class Shop : MonoBehaviour
         }
     }
     /// <summary>
-    /// プレイヤーとオブジェクトとの距離
+    /// プレイヤーとオブジェクトとの距離を計算し、キー入力に応じてCanvasを表示/非表示に切り替える
     /// </summary>
     void Update()
     {
@@ -53,7 +56,9 @@ public class Shop : MonoBehaviour
         Cursor.lockState = isCursorVisible ? CursorLockMode.None : CursorLockMode.Locked; // カーソルの動作を切り替える
     }
 
-    // シーンビューで範囲を可視化（デバッグ用）
+/// <summary>
+/// シーンビューで範囲を可視化（デバッグ用）
+/// </summary>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

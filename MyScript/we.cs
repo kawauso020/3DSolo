@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine;  
 using UnityEngine.UI;
 
-public class we : MonoBehaviour
+/// <summary>
+/// 武器のコントローラークラス
+/// このクラスは、武器の弾薬管理、射撃、リロードなどの機能を管理
+/// </summary>
+public class WeaponController : MonoBehaviour
 {
     public int magazineCapacity = 10;
     public int currentAmmoInMagazine;
@@ -41,6 +45,9 @@ public class we : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 弾を発射するメソッド
+    /// </summary>
     private void Shoot()
     {
         currentAmmoInMagazine--;
@@ -52,6 +59,10 @@ public class we : MonoBehaviour
         fireSound.Play();
     }
 
+    /// <summary>
+    /// リロード処理を行うコルーチン
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Reload()
     {
         isReloading = true;

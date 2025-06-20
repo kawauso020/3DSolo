@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ƒ‚ƒ“ƒXƒ^[‚ğ’èŠú“I‚ÉoŒ»‚³‚¹‚éƒNƒ‰ƒX
+/// </summary>
+
 public class MonsterSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject monsterPrefab; // ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®Prefab
-    [SerializeField] private Transform[] spawnPoints; // ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå‡ºç¾ã™ã‚‹ãƒã‚¤ãƒ³ãƒˆ
-    [SerializeField] private int initialSpawnCount = 5; // åˆæœŸã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
-    [SerializeField] private float initialSpawnInterval = 5f; // åˆæœŸã®å‡ºç¾é–“éš”
-    [SerializeField] private int spawnIncrement = 1; // ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°ã®å¢—åŠ é‡
-    [SerializeField] private float intervalDecrement = 0.5f; // å‡ºç¾é–“éš”ã®æ¸›å°‘é‡
-    [SerializeField] private float minimumSpawnInterval = 1f; // å‡ºç¾é–“éš”ã®æœ€å°å€¤
-    [SerializeField] private int maxActiveMonsters = 20; // åŒæ™‚ã«å‡ºç¾ã§ãã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æœ€å¤§æ•°
+    [SerializeField] private GameObject monsterPrefab; // ƒ‚ƒ“ƒXƒ^[‚ÌPrefab
+    [SerializeField] private Transform[] spawnPoints; // ƒ‚ƒ“ƒXƒ^[‚ªoŒ»‚·‚éƒ|ƒCƒ“ƒg
+    [SerializeField] private int initialSpawnCount = 5; // ‰Šú‚Ìƒ‚ƒ“ƒXƒ^[”
+    [SerializeField] private float initialSpawnInterval = 5f; // ‰Šú‚ÌoŒ»ŠÔŠu
+    [SerializeField] private int spawnIncrement = 1; // ƒ‚ƒ“ƒXƒ^[”‚Ì‘‰Á—Ê
+    [SerializeField] private float intervalDecrement = 0.5f; // oŒ»ŠÔŠu‚ÌŒ¸­—Ê
+    [SerializeField] private float minimumSpawnInterval = 1f; // oŒ»ŠÔŠu‚ÌÅ¬’l
+    [SerializeField] private int maxActiveMonsters = 20; // “¯‚ÉoŒ»‚Å‚«‚éƒ‚ƒ“ƒXƒ^[‚ÌÅ‘å”
 
-    private int currentSpawnCount; // ç¾åœ¨ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‡ºç¾æ•°
-    private float currentSpawnInterval; // ç¾åœ¨ã®å‡ºç¾é–“éš”
+    private int currentSpawnCount; // Œ»İ‚Ìƒ‚ƒ“ƒXƒ^[oŒ»”
+    private float currentSpawnInterval; // Œ»İ‚ÌoŒ»ŠÔŠu
     private List<GameObject> activeMonsters = new List<GameObject>();
 
     private void Start()
@@ -24,14 +28,17 @@ public class MonsterSpawner : MonoBehaviour
         StartCoroutine(SpawnMonstersPeriodically());
     }
 
+/// <summary>
+/// ƒ‚ƒ“ƒXƒ^[‚ğ’èŠú“I‚ÉoŒ»‚³‚¹‚éƒRƒ‹[ƒ`ƒ“
+/// </summary>
     private IEnumerator SpawnMonstersPeriodically()
     {
-        while (true)
+        while (true) //--> –³ŒÀƒ‹[ƒv‚É‚È‚è‚©‚Ë‚È‚¢‚©‚çGameEnd==false‚ÌğŒ‚ğ’Ç‰Á‚·‚é‚±‚Æ‚ğŒŸ“¢
         {
-            // ç¾åœ¨ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°ã‚’ç®¡ç†
+            // Œ»İ‚ÌƒAƒNƒeƒBƒu‚Èƒ‚ƒ“ƒXƒ^[”‚ğŠÇ—
             activeMonsters.RemoveAll(monster => monster == null);
 
-            // ä¸Šé™ã‚’è¶…ãˆãªã„ã‚ˆã†ã«åˆ¶å¾¡
+            // ãŒÀ‚ğ’´‚¦‚È‚¢‚æ‚¤‚É§Œä
             int spawnableCount = Mathf.Min(currentSpawnCount, maxActiveMonsters - activeMonsters.Count);
             for (int i = 0; i < spawnableCount; i++)
             {
@@ -40,11 +47,11 @@ public class MonsterSpawner : MonoBehaviour
                 activeMonsters.Add(monster);
             }
 
-            // æ¬¡å›ã®æº–å‚™: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°ã‚’å¢—ã‚„ã—ã€å‡ºç¾é–“éš”ã‚’çŸ­ç¸®
+            // Ÿ‰ñ‚Ì€”õ: ƒ‚ƒ“ƒXƒ^[”‚ğ‘‚â‚µAoŒ»ŠÔŠu‚ğ’Zk
             currentSpawnCount += spawnIncrement;
             currentSpawnInterval = Mathf.Max(minimumSpawnInterval, currentSpawnInterval - intervalDecrement);
 
-            // æ¬¡ã®å‡ºç¾ã¾ã§å¾…æ©Ÿ
+            // Ÿ‚ÌoŒ»‚Ü‚Å‘Ò‹@
             yield return new WaitForSeconds(currentSpawnInterval);
         }
     }
